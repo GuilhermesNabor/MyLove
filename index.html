@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarbaraLove</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./scripts/time.js"></script>
+    <link rel="shortcut icon" href="./assets/ico/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>MyLove</h1>
+    </header>
+
+    <div class="content">
+        <div class="time-elapsed" id="time-elapsed">
+            Carregando tempo...
+        </div>
+
+        <div class="photo-roll" id="photo-roll">
+            <img src="./assets/img/img1.jpg" alt="Foto 1" class="photo">
+            <img src="./assets/img/img2.jpg" alt="Foto 2" class="photo">
+            <img src="./assets/img/img3.jpg" alt="Foto 3" class="photo">
+            <img src="./assets/img/img4.jpg" alt="Foto 4" class="photo">
+            <img src="./assets/img/img5.jpg" alt="Foto 5" class="photo">
+        </div>
+        <br>
+
+        <h1 class="tituloDoTexto">Barbara,</h1>
+        <p class="texto">
+            Criei esse site para expressar o que sinto por você, nele irei colocar as nossas melhores fotos, e a cada mês estarei atualizando os textos. 😁
+            <hr>
+        </p>
+
+        <div class="card" onclick="toggleCardContent(1)">
+            <div class="card-title">1º Cartinha</div>
+            <div class="card-content" id="card-content-1">
+                <p>Minha querida <strong>Barbara</strong>,
+                    <br><br>
+                    Desde que você entrou na minha vida, tudo ganhou cor e significado. É como se cada momento ao seu lado fosse uma eternidade de felicidade. O jeito como você sorri, a luz nos seus olhos e até mesmo o som da sua voz fazem o mundo parecer um lugar mais bonito.
+                    <br><br>
+                    Você não é apenas alguém especial para mim, você é o meu porto seguro, minha inspiração e a razão pela qual acredito que os melhores dias ainda estão por vir. 
+                    <br><br>
+                    Quero ser para você o que você é para mim, um abrigo nos dias difíceis, um sorriso nas horas boas e uma certeza no meio de tantas dúvidas que a vida pode trazer. Quero te apoiar, te cuidar e, acima de tudo, te fazer feliz.
+                    <br><br>
+                    Obrigado por ser quem você é e por me permitir fazer parte da sua vida. Meu coração é seu, hoje e sempre.
+                    <br><br>
+                    Com todo meu amor,
+                    <strong>Guilherme Nabor 💕</strong></p>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCardContent(2)">
+            <div class="card-title">Nossa Música</div>
+            <div class="card-content" id="card-content-2">
+                <p>Escolhi essa música com muito amor, pois ela me faz lembrar de você. Ela me traz a lembrança dos momentos que já vivemos e dos que ainda vamos viver. ❤️</p>
+            </div>
+        </div>
+
+        <div class="music-player">
+            <audio id="music-player" controls>
+                <source src="./assets/mp3/something_about_you.mp3" type="audio/mp3">
+                Seu navegador não suporta o formato de áudio.
+            </audio>
+        </div>
+
+        <div class="lyrics-container" id="lyrics-container">
+
+        </div>
+    </div>
+
+    <script>
+        const photos = document.querySelectorAll('.photo-roll img');
+        let currentPhoto = 0;
+    
+        function changePhoto() {
+            photos[currentPhoto].classList.remove('active');
+    
+            currentPhoto = (currentPhoto + 1) % photos.length;
+    
+            photos[currentPhoto].classList.add('active');
+        }
+    
+        setInterval(changePhoto, 5000);
+    
+        photos[currentPhoto].classList.add('active');
+
+        function toggleCardContent(cardNumber) {
+            const cardContent = document.getElementById(`card-content-${cardNumber}`);
+            if (cardContent.style.display === "block") {
+                cardContent.style.display = "none";
+            } else {
+                cardContent.style.display = "block";
+            }
+        }
+
+        function convertToSeconds(timeString) {
+            const [minutes, seconds] = timeString.split(':').map(Number);
+            return minutes * 60 + seconds;
+        }
+    
+        const lyrics = [
+            { time: 0, line: "Something About You" },
+            { time: 5, line: "In the car, cruising around with you | No carro, viajando com você" },
+            { time: 11, line: "And my baby, you know that I got you | E, meu amor, você sabe que eu tô com você" },
+            { time: 14, line: "Hit the road, I'm taking off with you | Pegue a estrada, estamos nessa juntos" },
+            { time: 18, line: "Not in a hurry, there's something about you, oh | Sem pressa, há algo sobre você, oh" },
+            { time: 22, line: "Leave the car at the valet (cash only) | Deixe o carro com o manobrista (somente dinheiro)" },
+            { time: 29, line: "Check me in, pop the champagne (Dom Perignon) | Me registre, abra o champanhe (Dom Perignon)" },
+            { time: 37, line: "Pour me a glass, she's got good taste (so good) | Me sirva um copo, ela tem bom gosto (tão bom)" },
+            { time: 43, line: "Take off our clothes by the fire place (sexy, yeah) | Tire nossas roupas perto da lareira (sexy, sim)" },
+            { time: 51, line: "She looks just like a dream | Ela parece um sonho" },
+            { time: 55, line: "The prettiest girl I've ever seen | A garota mais linda que eu já vi" },
+            { time: 59, line: "From the cover of a magazine | Numa capa de revista" },
+            { time: convertToSeconds("01:05"), line: "In the car, cruising around with you | No carro, viajando com você" },
+            { time: convertToSeconds("01:08"), line: "And my baby, you know that I got you | E, meu amor, você sabe que eu tô com você" },
+            { time: convertToSeconds("01:12"), line: "Hit the road, I'm taking off with you | Pegue a estrada, estamos nessa juntos" },
+            { time: convertToSeconds("01:15"), line: "Not in a hurry, there's something about you, oh | Sem pressa, há algo sobre você, oh" },
+            { time: convertToSeconds("01:20"), line: "We stayed up all night and slept till noon | Ficamos acordados a noite inteira e dormimos até o meio dia" },
+            { time: convertToSeconds("01:27"), line: "It's so nice to wake up next to you | É tão bom acordar do seu lado" },
+            { time: convertToSeconds("01:34"), line: "Let's start the day with breakfast in bed | Vamos começar o dia com café da manhã na cama" },
+            { time: convertToSeconds("01:40"), line: "Think I'm gonna love you till I'm dead | Acho que vou te amar até que eu morra" },
+            { time: convertToSeconds("01:48"), line: "I can't wait to buy you things | Mal posso esperar para te comprar coisas" },
+            { time: convertToSeconds("01:52"), line: "A brand new diamond ring | Um anel de diamante novinho em folha" },
+            { time: convertToSeconds("01:55"), line: "This is more than just a fling | Isto vai além de uns pegas" },
+            { time: convertToSeconds("02:02"), line: "In the car, cruising around with you | No carro, viajando com você" },
+            { time: convertToSeconds("02:05"), line: "And my baby, you know that I got you | E, meu amor, você sabe que eu tô com você" },
+            { time: convertToSeconds("02:09"), line: "Hit the road, I'm taking off with you | Pegue a estrada, estamos nessa juntos" },
+            { time: convertToSeconds("02:12"), line: "Not in a hurry, there's something about you, oh | Sem pressa, há algo sobre você, oh" },
+            { time: convertToSeconds("02:17"), line: "There's something about you, girl | Há algo sobre você, garota" },
+            { time: convertToSeconds("02:21"), line: "There's something about you, oh | Há algo sobre você, oh" },
+            { time: convertToSeconds("02:25"), line: "Something about you | Algo sobre você" },
+            { time: convertToSeconds("02:28"), line: "Something about | Algo sobre" },
+        ];
+
+    const musicPlayer = document.getElementById("music-player");
+    const lyricsContainer = document.getElementById("lyrics-container");
+
+    function updateLyrics() {
+        const currentTime = musicPlayer.currentTime;
+        let displayedLyrics = '';
+
+        console.log('Tempo atual:', currentTime);
+
+        for (let i = 0; i < lyrics.length; i++) {
+            if (currentTime >= lyrics[i].time) {
+                displayedLyrics = lyrics[i].line;
+                console.log('Exibindo letra:', lyrics[i].line);
+            } else {
+                break; 
+            }
+        }
+
+        lyricsContainer.textContent = displayedLyrics;
+    }
+
+    musicPlayer.addEventListener("timeupdate", updateLyrics);
+    </script>
+</body>
+</html>
