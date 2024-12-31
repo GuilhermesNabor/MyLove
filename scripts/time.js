@@ -1,5 +1,5 @@
 function calcularTempo() {
-    const dataInicio = new Date('2024-11-22');
+    const dataInicio = new Date('2024-11-22T00:00:00');
     const dataAtual = new Date();
     const tempo = dataAtual - dataInicio;
 
